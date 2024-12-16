@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'list.dart';
 import 'map.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'firebase_service.dart';
 
 class DetailsScreen extends StatelessWidget {
   @override
@@ -167,15 +170,33 @@ class DetailsScreen extends StatelessWidget {
   }
 }
 
-void main() async {
-  //WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+/*  FirebaseService firebaseService = FirebaseService();
+
+  try {
+    Map<dynamic, dynamic> studios = await firebaseService.fetchStudios();
+    studios.forEach((key, value) {
+      print("Studio ID: $key");
+      print("Name: ${value['name']}");
+      print("Address: ${value['address']}");
+      print("Description: ${value['description']}");
+      print("Geolocation: ${value['geolocation']}");
+      print("Dances: ${value['dances']}\n");
+    });
+  } catch (e) {
+    print("Error: $e");
+  }*/
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: DetailsScreen(),
     routes: {
       '/studio': (context) => ListScreen(), // Dodaj rutu za novi ekran
       '/map': (context) => MapApp(),
+      '/details':(context) => DetailsScreen()
     },
   ));
 }

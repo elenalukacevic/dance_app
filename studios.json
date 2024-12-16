@@ -1,0 +1,55 @@
+{
+  "studios": {
+    "studio1": {
+      "name": "Zagreb Dance Academy",
+      "address": "Ilica 50, Zagreb",
+      "description": "A prestigious dance academy offering top-notch training in classical ballet, jazz, and contemporary dance. Known for its expert instructors and a creative environment that fosters both passion and discipline in dancers.",
+      "geolocation": {
+        "latitude": 45.81296,
+        "longitude": 15.97853
+      },
+      "dances": ["Ballet", "Jazz", "Contemporary"]
+    },
+    "studio2": {
+      "name": "Latin Fever Studio",
+      "address": "Savska cesta 25, Zagreb",
+      "description": "A vibrant studio specializing in Latin dances such as salsa, bachata, and kizomba. Perfect for beginners and seasoned dancers looking to embrace the rhythm and energy of Latin culture.",
+      "geolocation": {
+        "latitude": 45.80223,
+        "longitude": 15.96452
+      },
+      "dances": ["Salsa", "Bachata", "Kizomba"]
+    },
+    "studio3": {
+      "name": "Street Beats",
+      "address": "Zagrebačka avenija 100, Zagreb",
+      "description": "A modern dance studio focused on urban styles like hip hop, breakdance, and popping. With a dynamic atmosphere and cutting-edge choreography, it’s a haven for street dance enthusiasts.",
+      "geolocation": {
+        "latitude": 45.78967,
+        "longitude": 15.93825
+      },
+      "dances": ["Hip Hop", "Breakdance", "Urban"]
+    },
+    "studio4": {
+      "name": "Elegant Moves",
+      "address": "Kneza Branimira 75, Zagreb",
+      "description": "This studio offers a sophisticated approach to ballroom dancing, featuring styles such as waltz, tango, and foxtrot. Known for its elegant ambiance and experienced instructors, it’s perfect for preparing for formal events or honing social dance skills.",
+      "geolocation": {
+        "latitude": 45.81023,
+        "longitude": 15.98912
+      },
+      "dances": ["Waltz", "Tango", "Foxtrot"]
+    },
+    "studio5": {
+      "name": "Zumba World",
+      "address": "Trg bana Jelačića 15, Zagreb",
+      "description": "A high-energy studio focusing on Zumba and fitness dance programs. With upbeat music and fun routines, it’s ideal for anyone looking to stay fit while enjoying the rhythm of dance.",
+      "geolocation": {
+        "latitude": 45.81318,
+        "longitude": 15.97739
+      },
+      "dances": ["Zumba", "Fitness Dance"]
+    }
+  }
+}
+

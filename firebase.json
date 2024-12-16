@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"ios":{"default":{"projectId":"dance-front","appId":"1:336634849536:ios:9b1cc678ab3ab81466abe5","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"dance-front","configurations":{"ios":"1:336634849536:ios:9b1cc678ab3ab81466abe5"}}}}}}

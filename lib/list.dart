@@ -1,83 +1,74 @@
 import 'package:flutter/material.dart';
+import 'firebase_service.dart';
+import 'studio.dart';
 
-class ListScreen extends StatelessWidget {
-  // Sample data for ATMs
-  final List<Map<String, String>> atms = [
-    {'name': 'PLODINE', 'address': 'TRG RUDERA BOSKOVCA bb, 33520 SLATINA', 'status': 'Open 24 hours'},
-    {'name': 'POSLOVNICA SLATINA', 'address': 'TRG SVETOG JOSIPA 2, 33520 SLATINA', 'status': 'Open 24 hours'},
-    {'name': 'ZAGREB', 'address': 'TRG SV. JOSIPA 2, 33520 SLATINA', 'status': 'Open 24 hours'},
-  ];
+class ListScreen extends StatefulWidget {
+  @override
+  _ListScreenState createState() => _ListScreenState();
+}
+
+class _ListScreenState extends State<ListScreen> {
+  final FirebaseService _firebaseService = FirebaseService();
+  List<Studio> _studios = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchStudios();
+  }
+
+  Future<void> _fetchStudios() async {
+    try {
+      // Fetch studios using FirebaseService
+      final studios = await _firebaseService.fetchStudios();
+      setState(() {
+        _studios = studios;
+        _isLoading = false;
+      });
+    } catch (e) {
+      print("Error fetching studios: $e");
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ATMs"),
+        title: Text("Studios"),
         backgroundColor: Colors.purple,
       ),
-      body: Column(
-        children: [
-          // Search bar
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Search",
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
-              onChanged: (value) {
-                // Placeholder for future filtering logic
-                print("Search query: $value");
-              },
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: atms.length,
+
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : _studios.isEmpty
+          ? Center(child: Text("error, no data."))
+          : ListView.builder(
+              itemCount: _studios.length,
               itemBuilder: (context, index) {
-                final atm = atms[index];
+                final studio = _studios[index];
                 return ListTile(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
                   title: Text(
-                    atm['name'] ?? '',
+                    studio.name,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(atm['address'] ?? ''),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        atm['status'] ?? '',
-                        style: TextStyle(color: Colors.green),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () {
-            // Action for showing the map
-            print("Show Map button clicked");
-          },
-          child: Text("SHOW MAP"),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.purple,
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            textStyle: TextStyle(fontSize: 16),
-          ),
-        ),
+                  subtitle: Text(studio.address),
+                onTap: () {
+                  Navigator.pushNamed(context, '/details');
+            },
+          );
+        },
       ),
     );
   }
 }
+
 
 
