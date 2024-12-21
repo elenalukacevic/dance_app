@@ -1,5 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'studio.dart'; // Import the Studio class
+import 'studio.dart';
 
 class FirebaseService {
   final DatabaseReference ref = FirebaseDatabase.instance.ref("studios");
