@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'firebase_service.dart';
 import 'studio.dart';
 import 'details.dart';
-import 'list.dart'; // Import your ListScreen
+import 'list.dart';
 
 class MapApp extends StatefulWidget {
   final LatLng? initialLocation;
@@ -112,14 +112,13 @@ class _MapAppState extends State<MapApp> {
                 ],
               ),
             ),
-          // Button at the bottom of the screen
+
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigate to the ListScreen
                   Navigator.push(
                     context,
                     MaterialPageRoute(

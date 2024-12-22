@@ -7,8 +7,8 @@ import 'firebase_options.dart';
 import 'firebase_service.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter framework is initialized
-  await Firebase.initializeApp(); // Initialize Firebase
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); 
   runApp(MyApp());
 }
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       home: MapApp(),
       routes: {
-        '/studio': (context) => ListScreen(),
+        '/studios': (context) => ListScreen(),
         '/map': (context) => MapApp(),
       },
     );

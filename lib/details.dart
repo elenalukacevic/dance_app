@@ -9,8 +9,6 @@ String generateLoremPicsumUrl(String studioName) {
   return picsumUrl;
 }
 
-
-
 class DetailsScreen extends StatelessWidget {
   final Studio studio;
 
@@ -177,7 +175,7 @@ class DetailsScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/studio');
+                    Navigator.pushNamed(context, '/studios');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
