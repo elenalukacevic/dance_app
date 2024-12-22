@@ -21,11 +21,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: ListScreen(),
+      home: MapApp(),
       routes: {
         '/studio': (context) => ListScreen(),
         '/map': (context) => MapApp(),
-
       },
     );
   }

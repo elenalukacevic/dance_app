@@ -1,5 +1,14 @@
 import 'studio.dart';
+import 'map.dart';
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
+
+String generateLoremPicsumUrl(String studioName) {
+  int id = studioName.length;
+  String picsumUrl = 'https://picsum.photos/id/$id/600/400';
+  return picsumUrl;
+}
+
 
 
 class DetailsScreen extends StatelessWidget {
@@ -13,10 +22,10 @@ class DetailsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        //leading: IconButton(
+          //icon: Icon(Icons.arrow_back, color: Colors.white),
+          //onPressed: () => Navigator.of(context).pop(),
+        //),
         title: Text(
           studio.name,
           style: TextStyle(color: Colors.white),
@@ -40,6 +49,7 @@ class DetailsScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
+                SizedBox(height: 4),
                 Text(studio.address,
                   style: TextStyle(
                     fontSize: 15.0,
@@ -47,12 +57,18 @@ class DetailsScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
+                SizedBox(height: 14),
                 Row(
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Navigate to map screen
-                        Navigator.pushNamed(context, '/map');
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                            builder: (context) => MapApp(
+                            initialLocation: LatLng(
+                            studio.geolocation['latitude']!,
+                            studio.geolocation['longitude']!,),),),);
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
@@ -81,33 +97,20 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16.0),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/map');
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey[800],
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
-              ),
-              child: Text('MAP', style: TextStyle(color: Colors.white)),
-            ),
-          ),
-          SizedBox(height: 16.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Image.network(generateLoremPicsumUrl(studio.name)),
+                SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+
                     Text(
                       'Opening hours',
-                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 16.0,),
                     ),
                     Text(
                       'Open 24 hours', // Static text for now
@@ -118,7 +121,7 @@ class DetailsScreen extends StatelessWidget {
                 SizedBox(height: 16.0),
                 Text(
                   studio.description,
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 16.0),
                 ),
                 SizedBox(height: 8.0),
               ],
@@ -146,10 +149,17 @@ class DetailsScreen extends StatelessWidget {
                 },
               );
             },
-            child: Text("Book now"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.purple,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0),
+                ),
+            ),
+            child: Text("Book now",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+
           ),
           Container(
-            color: Colors.orange.withOpacity(0.1),
+            color: Colors.purple.withOpacity(0.1),
             padding: EdgeInsets.all(16.0),
             child: Row(
               children: [

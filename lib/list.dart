@@ -72,7 +72,7 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Studios"),
+        title: Text("Studios",style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.purple,
       ),
       body: Column(
@@ -168,7 +168,25 @@ class _ListScreenState extends State<ListScreen> {
               },
             ),
           ),
-        ],
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/map');
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.purple,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
+            ),
+              child: Text('MAP', style: TextStyle(color: Colors.white)),
+          ),
+          )
+        )],
       ),
     );
   }
